@@ -3,6 +3,7 @@
 A web-based tool that provides detailed analytics and insights from WhatsApp chat exports. This tool helps you understand communication patterns, user engagement, and content analysis from your WhatsApp conversations.
 
 Screenshots
+
 ![WhatsApp Chat Analyzer Screenshot](screenshots/ss.png?raw=true)
 ----
 ----
