@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Chat Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 id="whatsapp-chat-analyzer" class="text-3xl font-bold mb-8 text-center">WhatsApp Chat Analyzer</h1>
+
+        <form id="upload-form" class="mb-8">
+            <input type="file" id="chat-file" name="chat_file" accept=".txt" required>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Analyze</button>
+        </form>
+
+        <div id="results" class="hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-min">
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="basic-statistics" class="text-xl font-semibold mb-4">Basic Statistics</h2>
+                    <p>Total Messages: <span id="total-messages"></span></p>
+                    <p>Total Users: <span id="total-users"></span></p>
+                    <p>Media Messages: <span id="media-count"></span></p>
+                    <p>Total Emojis: <span id="total-emojis"></span></p>
+                    <p>Average Response Time: <span id="avg-response-time"></span> minutes</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="messages-per-user" class="text-xl font-semibold mb-4">Messages per User</h2>
+                    <canvas id="messages-per-user-chart"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="time-of-day-analysis" class="text-xl font-semibold mb-4">Time of Day Analysis</h2>
+                    <canvas id="time-of-day-chart"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="top-words" class="text-xl font-semibold mb-4">Top Words</h2>
+                    <canvas id="top-words-chart"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="top-emojis" class="text-xl font-semibold mb-4">Top Emojis</h2>
+                    <div id="top-emojis-container"></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="sentiment-analysis" class="text-xl font-semibold mb-4">Sentiment Analysis</h2>
+                    <p>Average Sentiment: <span id="avg-sentiment"></span></p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="longest-streak" class="text-xl font-semibold mb-4">Longest Streak</h2>
+                    <p>User: <span id="longest-streak-user"></span></p>
+                    <p>Count: <span id="longest-streak-count"></span> messages</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md h-auto">
+                    <h2 id="conversation-starters-and-closers" class="text-xl font-semibold mb-4">Conversation Starters and Closers</h2>
+                    <h3 id="starters" class="font-semibold mt-2">Starters</h3>
+                    <div id="conversation-starters"></div>
+                    <h3 id="closers" class="font-semibold mt-4">Closers</h3>
+                    <div id="conversation-closers"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-md h-auto">
+                <h2 id="word-cloud" class="text-xl font-semibold mb-4">Word Cloud</h2>
+                <img id="wordcloud" alt="Word Cloud" class="mx-auto">
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
